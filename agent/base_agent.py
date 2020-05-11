@@ -230,7 +230,7 @@ class BaseAgent():
     def train_one_epoch_D(self, reward):
         self.model.train()
         losses = []
-        self.train_loader.dataset.create_sample(model)
+        self.train_loader.dataset.create_sample()
         for e, r, entity, y in self.train_loader:
             self.optim.zero_grad()
             e = torch.LongTensor(e).cuda().view(-1, 1)

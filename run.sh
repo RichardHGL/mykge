@@ -89,12 +89,12 @@
 #CUDA_VISIBLE_DEVICES=3 python -u main.py --model DistMult --data WN18RR   --dim 100 --batch_size 256 --batch_size2 100 --bern --mode grap --n_sample 100 --rate 0.10 --v 10 & 
 
 #CUDA_VISIBLE_DEVICES=5 python -u main.py --model ConvE --data FB15K237 --dim 200 --batch_size 128 --batch_size2 128 --bern --mode 1vsN --n_sample 15000 --rate 0.05 --v 5 --f
-#CUDA_VISIBLE_DEVICES=1 python -u main.py --model ConvE --data FB15K237 --dim 200 --batch_size 128 --batch_size2 128 --bern --mode 1vsN --n_sample 15000 --rate 0.0 --v 0 --f
+#CUDA_VISIBLE_DEVICES=0 python -u main.py --model ConvE --data FB15K237 --dim 200 --batch_size 128 --batch_size2 128 --bern --mode 1vsN --n_sample 200 --rate 0.0 --v 0 --f
 
 #CUDA_VISIBLE_DEVICES=2 python -u main.py --model TransH --data FB15K237 --dim 100 --batch_size 256 --batch_size2 256 --bern --mode 1vsN --n_sample 1000 --rate 0.0 --v 0 --f
 #CUDA_VISIBLE_DEVICES=4 python -u main.py --model TransH --data FB15K237 --dim 100 --batch_size 256 --batch_size2 256 --bern --mode 1vsN --n_sample 1000 --rate 0.05 --v 5 --f
 
-#CUDA_VISIBLE_DEVICES=6 python -u main.py --model ConvE --data WN18RR   --dim 200 --batch_size 128 --batch_size2 16 --bern --mode 1vsN --n_sample 10000 --rate 0.0 --v 0 --f
+CUDA_VISIBLE_DEVICES=0 python -u main.py --model ConvE --data WN18RR   --dim 200 --batch_size 128 --batch_size2 16 --bern --mode 1vsN --n_sample 200 --rate 0.0 --v 1 --f
 #CUDA_VISIBLE_DEVICES=7 python -u main.py --model ConvE --data WN18RR   --dim 200 --batch_size 128 --batch_size2 16 --bern --mode 1vsN --n_sample 10000 --rate 0.05 --v 5 --f
 
 
