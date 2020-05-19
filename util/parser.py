@@ -47,7 +47,7 @@ def args_parser():
     parser.add_argument('--data', type=str, default='FB15K237')
     parser.add_argument('--exp_path', type=str, default='experiment')
     parser.add_argument('--model', type=str, default='TransE')
-    parser.add_argument('--v', type=int, default=0)
+    parser.add_argument('--v', type=float, default=0)
     parser.add_argument('--f', action='store_true')
     parser.add_argument('--eval', action='store_true')
     parser.add_argument('--trained', action='store_true')

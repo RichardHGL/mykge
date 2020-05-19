@@ -320,7 +320,7 @@ class Dataset_A(Dataset):
                             neb_r |= self.h_rt[ent][r]
                 for ent in self.h_rt[h][r]:
                     r_neb |= nebs[ent]
-                neg_t = (neb_r | r_neb) - self.h_rt[h][r]
+                neg_t = ( neb ) - self.h_rt[h][r]
                 # neg_t = neb - self.h_rt[h][r]
                 if (len(neg_t) == 0):
                     neg_t = np.random.randint(0, self.n_ent, self.n_sample)
@@ -335,7 +335,7 @@ class Dataset_A(Dataset):
                             neb_r |= self.h_rt[ent][r_inv]
                 for ent in self.h_rt[t][r_inv]:
                     r_neb |= nebs[ent]
-                neg_h = (neb_r | r_neb) - self.h_rt[t][r_inv]
+                neg_h = ( neb) - self.h_rt[t][r_inv]
                 # neg_h = neb - self.h_rt[t][r_inv]
                 if (len(neg_h) == 0):
                     neg_h = np.random.randint(0, self.n_ent, self.n_sample)
@@ -344,12 +344,10 @@ class Dataset_A(Dataset):
     def grap(self):
         samples = []
         n = len(self.data)
-        n_sample1 = int(self.n_sample * self.sample_rate)
-        n_sample2 = self.n_sample - n_sample1
         rand_h = np.random.randint(
-            low=0, high=self.n_ent, size=(n, n_sample2))
+            low=0, high=self.n_ent, size=(n, self.n_sample))
         rand_t = np.random.randint(
-            low=0, high=self.n_ent, size=(n, n_sample2))
+            low=0, high=self.n_ent, size=(n, self.n_sample))
         
         '''
         hr_grap = []
@@ -367,14 +365,19 @@ class Dataset_A(Dataset):
                 neg_h = self.tr_cache[tr_idx]
                 tr_grap.append(np.random.choice(neg_h, n_sample1))
         '''
+        sb = np.random.binomial(self.n_sample, self.sample_rate, (2,n))
         for i in range(n):
             h, r, t = self.data[i]
             hr_idx = self.hr_idx[i]
             tr_idx = self.tr_idx[i]
             n_h1 = self.tr_cache[tr_idx]
             n_t1 = self.hr_cache[hr_idx]
-            n_h = np.append(np.random.choice(n_h1, n_sample1), rand_h[i])
-            n_t = np.append(np.random.choice(n_t1, n_sample1), rand_t[i])
+            n_h = rand_h[i]
+            n_t = rand_t[i]
+            x1 = sb[0][i]
+            x2 = sb[1][i]
+            n_h[:x1] = np.random.choice(n_h1, x1)
+            n_t[:x2] = np.random.choice(n_t1, x2)
             n_r = [r] * self.n_sample
             select = np.random.binomial(1, self.bern_prob[n_r])
             for k, sel in enumerate(select):
@@ -465,7 +468,7 @@ class Dataset_D(Dataset):
         self.samples = self.grap()
 
     def __len__(self):
-        return len(self.data)
+        return 2*len(self.data)
 
     def __getitem__(self, idx):
         h, r, t, neg_t = self.samples[idx]
@@ -513,7 +516,7 @@ class Dataset_D(Dataset):
                             neb_r |= self.h_rt[ent][r]
                 for ent in self.h_rt[h][r]:
                     r_neb |= nebs[ent]
-                neg_t = (neb) - self.h_rt[h][r]
+                neg_t = (neb | neb_r | r_neb) - self.h_rt[h][r]
                 if (len(neg_t) == 0):
                     neg_t = np.random.randint(0, self.n_ent, self.n_sample)
                 self.hr_cache.append(list(neg_t))
@@ -527,7 +530,7 @@ class Dataset_D(Dataset):
                             neb_r |= self.h_rt[ent][r_inv]
                 for ent in self.h_rt[t][r_inv]:
                     r_neb |= nebs[ent]
-                neg_h = (neb) - self.h_rt[t][r_inv]
+                neg_h = (neb | neb_r | r_neb) - self.h_rt[t][r_inv]
                 if (len(neg_h) == 0):
                     neg_h = np.random.randint(0, self.n_ent, self.n_sample)
                 self.tr_cache.append(list(neg_h))

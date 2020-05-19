@@ -184,7 +184,7 @@ class BaseAgent():
             else:
                 n_scores = self.model(n_hs, n_rs, n_ts)
             p_loss = -F.logsigmoid(p_score)
-            if self.args.mode == 'adve':
+            if self.args.mode in {'adve', 'grap'}:
                 n_loss = -(
                     F.softmax(n_scores, dim=-1) * F.logsigmoid(-n_scores)
                     ).sum(-1)
@@ -286,4 +286,4 @@ class BaseAgent():
                 self.args.pretrained_name + '.ckpt'
             )
         self.load_ckpt(filename)
-        self.evaluator.evaluate(self.valid_loader, name='test')
+        self.evaluator.evaluate(self.test_loader, name='test')

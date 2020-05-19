@@ -20,6 +20,8 @@ class Evaluator:
         self.init_stat()
 
     def evaluate(self, data_loader, name='valid'):
+        demu = 0
+        dezi = 0
         self.model.eval()
         self.logger.info('Start Evaling...')
 
@@ -55,7 +57,11 @@ class Evaluator:
                     flag = False
                     if fil_rank <= 10:
                         flag = True
-                    self.add_stat(ind2[:min(3-1, fil_rank-1)], h, r, t, flag)
+                        if fil_rank != 1:
+                            dezi += 1
+                    demu += 1
+                    mask = self.add_stat(ind2[: min(2, fil_rank-1)], h, r, t, flag)
+                    fil_rank -= 0
                     if r < self.n_rel:
                         tail_rank.append(fil_rank)
                         record[(h, r, t)][0] = raw_rank
@@ -80,6 +86,7 @@ class Evaluator:
         if name == 'test':
             write_record(record, self.filename)
 
+        print('prop: %.4f' % (dezi / demu))
         self.print_stat()
         return all_metric
 
@@ -134,6 +141,12 @@ class Evaluator:
             self.t3 += 1
         if t in union:
             self.un_t += 1
+
+        mask = 0
+        for s in indx:
+            if s in (neb_r | r_neb):
+                mask += 1
+        return mask
 
     def print_stat(self):
         neb = self.neb / self.totoal
