@@ -75,14 +75,14 @@ class Evaluator:
         pbar.close()
         head_metric, tail_metric, all_metric = eval_ranks(head_rank, tail_rank)
         self.logger.info(
-            'Head: mr:{:.1f} mrr:{:.2f} hits:{:.2f}'.format
-            (head_metric[0], head_metric[1], head_metric[2]))
+            'Head: mr:{:.1f} mrr:{:.2f} hits10:{:.2f} hits3:{:.2f} hits1:{:.2f}'.format
+            (head_metric[0], head_metric[1], head_metric[2], head_metric[3], head_metric[4]))
         self.logger.info(
-            'Tail: mr:{:.1f} mrr:{:.2f} hits:{:.2f}'.format
-            (tail_metric[0], tail_metric[1], tail_metric[2]))
+            'Tail: mr:{:.1f} mrr:{:.2f} hits10:{:.2f} hits3:{:.2f} hits1:{:.2f}'.format
+            (tail_metric[0], tail_metric[1], tail_metric[2], tail_metric[3], tail_metric[4]))
         self.logger.info(
-            'All: mr:{:.1f} mrr:{:.2f} hits:{:.2f}'.format
-            (all_metric[0], all_metric[1], all_metric[2]))
+            'All: mr:{:.1f} mrr:{:.2f} hits10:{:.2f} hits3:{:.2f} hits1:{:.2f}'.format
+            (all_metric[0], all_metric[1], all_metric[2], all_metric[3], all_metric[4]))
         if name == 'test':
             write_record(record, self.filename)
 

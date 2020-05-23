@@ -101,8 +101,10 @@ def eval_ranks(head_rank, tail_rank):
         rank = np.array(rank)
         mr = np.mean(rank)
         mrr = np.mean(1.0 / rank) * 100
-        hits = np.mean(rank <= 10) * 100
-        return [mr, mrr, hits]
+        hits10 = np.mean(rank <= 10) * 100
+        hits3 = np.mean(rank <= 3) * 100
+        hits1 = np.mean(rank <= 1) * 100
+        return [mr, mrr, hits10, hits3, hits1]
     head_metric = calc(head_rank)
     tail_metric = calc(tail_rank)
     all_metric = calc(head_rank + tail_rank)

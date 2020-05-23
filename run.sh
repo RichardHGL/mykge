@@ -80,15 +80,15 @@
 #CUDA_VISIBLE_DEVICES=3 python -u main.py --model DistMult --data WN18RR   --dim 100 --batch_size 256 --batch_size2 100 --bern --mode grap --n_sample 100 --rate 0.10 --v 10 & 
 
 #CUDA_VISIBLE_DEVICES=0 python -u main.py --model ConvE --data FB15K237 --dim 200 --batch_size 128 --batch_size2 128 --bern --mode 1vsN --n_sample 100 --rate 0.1 --v 10 --f
-#CUDA_VISIBLE_DEVICES=0 python -u main.py --model ConvE --data FB15K237 --dim 200 --batch_size 128 --batch_size2 128 --bern --mode 1vsN --n_sample 100 --rate 0.0 --v 1 --f
+#CUDA_VISIBLE_DEVICES=0 nohup python -u main.py --model ConvE --data FB15K237 --dim 200 --batch_size 128 --batch_size2 128 --bern --mode 1vsN --n_sample 100 --rate 0.01 --v 100.01 --f &
 #CUDA_VISIBLE_DEVICES=0 python -u main.py --model ConvE --data WN18RR   --dim 200 --batch_size 128 --batch_size2 16 --bern --mode 1vsN --n_sample 200 --rate 0.0 --v 1 --trained --pretrained_name ConvE-WN18RR-1vsN-1 --eval --f
-#CUDA_VISIBLE_DEVICES=7 python -u main.py --model ConvE --data WN18RR   --dim 200 --batch_size 128 --batch_size2 16 --bern --mode 1vsN --n_sample 10000 --rate 0.05 --v 5 --f
+#CUDA_VISIBLE_DEVICES=0 python -u main.py --model ConvE --data WN18RR   --dim 200 --batch_size 128 --batch_size2 16 --bern --mode 1vsN --n_sample 100 --rate 0.02 --v 100.02 --f
 
-#CUDA_VISIBLE_DEVICES=0 python -u main.py --model TransH --data FB15K237 --dim 100 --batch_size 256 --batch_size2 256 --bern --mode grap --n_sample 20 --rate 0.05 --v 200.05 --f 
-#CUDA_VISIBLE_DEVICES=0 python -u main.py --model TransH --data WN18RR   --dim 100 --batch_size 256 --batch_size2 100 --bern --mode grap --n_sample 10 --rate 0 --v 0 --f
+CUDA_VISIBLE_DEVICES=0 python -u main.py --model TransH --data FB15K237 --dim 100 --batch_size 256 --batch_size2 256 --bern --mode rand --n_sample 200  --v 200 --f
+#CUDA_VISIBLE_DEVICES=0 python -u main.py --model TransH --data WN18RR   --dim 100 --batch_size 256 --batch_size2 100 --bern --mode rand --n_sample 50 --v 200 --f
 
 #CUDA_VISIBLE_DEVICES=0 python -u main.py --model TransH --data FB15K237 --dim 100 --batch_size 256 --batch_size2 256 --bern --mode rand --n_sample 100 --v 100 --trained --pretrained_name TransH-FB15K237-rand-100 --eval --f
-#CUDA_VISIBLE_DEVICES=0 python -u main.py --model TransH --data WN18RR   --dim 100 --batch_size 256 --batch_size2 100 --bern --mode rand --n_sample 100 --v 100 --trained --pretrained_name TransH-WN18RR-grap--10.01 --eval --f
+#CUDA_VISIBLE_DEVICES=0 python -u main.py --model TransH --data WN18RR   --dim 100 --batch_size 256 --batch_size2 100 --bern --mode cach --n_sample 12 --v 12 --trained --pretrained_name TransH-WN18RR-grap--10.01 --eval --f
 
-CUDA_VISIBLE_DEVICES=0 python -u main.py --model DistMult --data FB15K237 --dim 100 --batch_size 256 --batch_size2 256 --bern --mode grap --n_sample 10 --rate 0.05 --v 10.05 --f
+#CUDA_VISIBLE_DEVICES=0 python -u main.py --model DistMult --data FB15K237 --dim 100 --batch_size 256 --batch_size2 256 --bern --mode rand --n_sample 100 --v 100 --f
 

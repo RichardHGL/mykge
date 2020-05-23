@@ -49,6 +49,7 @@ def args_parser():
     parser.add_argument('--model', type=str, default='TransE')
     parser.add_argument('--v', type=float, default=0)
     parser.add_argument('--f', action='store_true')
+    parser.add_argument('--adv', action='store_true')
     parser.add_argument('--eval', action='store_true')
     parser.add_argument('--trained', action='store_true')
     parser.add_argument('--pretrained_name', type=str, default=None)

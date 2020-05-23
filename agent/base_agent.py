@@ -142,7 +142,7 @@ class BaseAgent():
                 .format(time.time()-t_begin, i, loss)
             )
             if (i+1) % self.args.every == 0:
-                mr, mrr, hits = self.evaluator.evaluate(self.valid_loader)
+                mr, mrr, hits, _, _, = self.evaluator.evaluate(self.valid_loader)
                 self.evaluator.evaluate(self.test_loader)
                 if mrr > self.best_performace:
                     self.best_performace = mrr
@@ -184,7 +184,7 @@ class BaseAgent():
             else:
                 n_scores = self.model(n_hs, n_rs, n_ts)
             p_loss = -F.logsigmoid(p_score)
-            if self.args.mode in {'adve', 'grap'}:
+            if self.args.adv is True:
                 n_loss = -(
                     F.softmax(n_scores, dim=-1) * F.logsigmoid(-n_scores)
                     ).sum(-1)
