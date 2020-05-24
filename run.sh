@@ -74,7 +74,7 @@
 
 
 # Graph
-CUDA_VISIBLE_DEVICES=0 python -u main.py --model DistMult --data WN18RR   --dim 100 --batch_size 256 --batch_size2 100 --bern --mode rand --n_sample 200 --v 200 --f --trained --pretrained_name DistMult-WN18RR-rand-100.0
+CUDA_VISIBLE_DEVICES=0 python -u main.py --model DistMult --data WN18RR   --dim 100 --batch_size 256 --batch_size2 100 --bern --mode grap --n_sample 12 --v 12.001 --rate 0.01 --f --adv
 #CUDA_VISIBLE_DEVICES=1 python -u main.py --model DistMult --data WN18RR   --dim 100 --batch_size 256 --batch_size2 100 --bern --mode grap --n_sample 100 --rate 0.02 --v 2 &
 #CUDA_VISIBLE_DEVICES=2 python -u main.py --model DistMult --data WN18RR   --dim 100 --batch_size 256 --batch_size2 100 --bern --mode grap --n_sample 100 --rate 0.05 --v 5 &
 #CUDA_VISIBLE_DEVICES=3 python -u main.py --model DistMult --data WN18RR   --dim 100 --batch_size 256 --batch_size2 100 --bern --mode grap --n_sample 100 --rate 0.10 --v 10 & 
