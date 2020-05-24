@@ -320,7 +320,7 @@ class Dataset_A(Dataset):
                             neb_r |= self.h_rt[ent][r]
                 for ent in self.h_rt[h][r]:
                     r_neb |= nebs[ent]
-                neg_t = ( neb ) - self.h_rt[h][r]
+                neg_t = ( neb_r | r_neb ) - self.h_rt[h][r]
                 # neg_t = neb - self.h_rt[h][r]
                 if (len(neg_t) == 0):
                     neg_t = np.random.randint(0, self.n_ent, self.n_sample)
@@ -335,7 +335,7 @@ class Dataset_A(Dataset):
                             neb_r |= self.h_rt[ent][r_inv]
                 for ent in self.h_rt[t][r_inv]:
                     r_neb |= nebs[ent]
-                neg_h = ( neb) - self.h_rt[t][r_inv]
+                neg_h = ( neb_r | r_neb) - self.h_rt[t][r_inv]
                 # neg_h = neb - self.h_rt[t][r_inv]
                 if (len(neg_h) == 0):
                     neg_h = np.random.randint(0, self.n_ent, self.n_sample)
